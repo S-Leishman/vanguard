@@ -1,180 +1,115 @@
 /* CSS BY Scott Leishman */
-
 /* IMPORTED FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* CSS RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Inter", sans-serif; line-height: 1.6; color: #fff; background: #000; }
 
 /* ROOT VARIABLES */
 :root {
   --blue: #007bff;
-  --white: #ffffff;
-  --black: #000000;
-  --gray: #333333;
-  --font: "Inter", sans-serif;
+  --charcoal: #222;
+  --white: #fff;
 }
 
-/* GLOBAL STYLES (mobile first) */
-body {
-  font-family: var(--font);
-  color: var(--black);
-  line-height: 1.6;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-header {
-  background: var(--black);
-  color: var(--white);
-  padding: 1rem 0;
-}
-
-header h1 {
+/* GLOBAL STYLES */
+.container { width: 90%; max-width: 1200px; margin: auto; }
+h1, h2, h3 { font-weight: 700; margin-bottom: 1rem; }
+p { margin-bottom: 1rem; }
+.btn {
   display: inline-block;
-}
-
-nav ul {
-  display: flex;
-  gap: 1rem;
-  list-style: none;
-}
-
-nav a {
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.hero {
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-              url('images/vanguard-hero.jpg') no-repeat center/cover;
-  color: var(--white);
-  text-align: center;
-  padding: 5rem 1rem;
-}
-
-.hero .btn {
   background: var(--blue);
   color: var(--white);
   padding: 0.75rem 1.5rem;
-  margin-top: 1rem;
-  display: inline-block;
   border-radius: 5px;
   text-decoration: none;
+  transition: background 0.3s ease;
 }
+.btn:hover { background: #0056b3; }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-top: 1rem;
-}
+/* HEADER */
+header { background: #000; padding: 1rem 0; }
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+nav ul { display: flex; gap: 1.5rem; list-style: none; }
+nav a { color: var(--white); text-decoration: none; font-weight: 600; }
+nav a:hover { color: var(--blue); }
 
-.grid article {
-  background: var(--blue);
-  color: var(--white);
-  padding: 1rem;
-  border-radius: 6px;
-}
-
-.results-container {
+/* HERO */
+.hero {
+  background: url("images/vanguard-hero.jpg") no-repeat center center/cover;
+  position: relative;
+  height: 80vh;
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
 }
-
-.results-table table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.results-table th,
-.results-table td {
-  border: 1px solid var(--gray);
-  padding: 0.5rem;
+.hero-overlay {
+  background: rgba(0,0,0,0.6);
+  padding: 2rem;
+  border-radius: 10px;
   text-align: center;
 }
 
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+.grid article {
+  background: var(--blue);
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: var(--white);
+}
+
+/* RESULTS */
+.results { background: var(--blue); padding: 3rem 0; }
+.results-container { display: flex; flex-direction: column; gap: 2rem; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid #333; padding: 0.75rem; text-align: center; }
+
+/* BAR CHART */
 #bar-chart {
   display: flex;
-  gap: 1rem;
   align-items: flex-end;
-  height: 200px;
+  gap: 1rem;
+  height: 250px;
 }
-
 .bar {
-  width: 40px;
-  background: var(--gray);
-  animation: grow 1s ease-in-out forwards;
+  width: 50px;
+  background: var(--charcoal);
+  border-radius: 5px;
+  height: 0;
+  animation: stepUp 1s ease-in-out forwards;
 }
-
 .bar::after {
   content: attr(data-year);
   display: block;
   text-align: center;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
 }
-
-@keyframes grow {
+@keyframes stepUp {
   from { height: 0; }
   to { height: var(--height); }
 }
 
-form {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1rem;
-}
+/* CONTACT */
+.contact { background: #111; padding: 3rem 0; }
+form { display: grid; gap: 1rem; }
+input, textarea { padding: 0.75rem; border: none; border-radius: 5px; width: 100%; }
 
-form input, form textarea, form button {
-  padding: 0.75rem;
-  border: 1px solid var(--gray);
-  border-radius: 4px;
-  width: 100%;
-}
+/* FOOTER */
+footer { background: #000; padding: 1.5rem; text-align: center; font-size: 0.9rem; }
 
-form button {
-  background: var(--blue);
-  color: var(--white);
-  border: none;
-  cursor: pointer;
-}
-
-footer {
-  background: var(--black);
-  color: var(--white);
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
-}
-
-/* MEDIA QUERY (medium) */
+/* MEDIA QUERIES */
 @media (min-width: 800px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .results-container {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .results-table, .results-chart {
-    width: 48%;
-  }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .results-container { flex-direction: row; }
 }
-
-/* MEDIA QUERY (large) */
 @media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .grid { grid-template-columns: repeat(3, 1fr); }
 }
